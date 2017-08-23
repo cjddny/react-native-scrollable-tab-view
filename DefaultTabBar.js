@@ -56,17 +56,19 @@ const DefaultTabBar = React.createClass({
 
   render() {
     const containerWidth = this.props.containerWidth;
+    const underlineWidth = this.props.underlineWidth;
+
     const numberOfTabs = this.props.tabs.length;
     const tabUnderlineStyle = {
       position: 'absolute',
-      width: containerWidth / numberOfTabs,
+      width: underlineWidth ? underlineWidth : containerWidth / numberOfTabs,
       height: 4,
       backgroundColor: 'navy',
       bottom: 0,
     };
 
     const left = this.props.scrollValue.interpolate({
-      inputRange: [0, 1, ], outputRange: [0,  containerWidth / numberOfTabs, ],
+      inputRange: [0, 1, ], outputRange: [0,  underlineWidth ? underlineWidth : containerWidth / numberOfTabs, ],
     });
     return (
       <View style={[styles.tabs, {backgroundColor: this.props.backgroundColor, }, this.props.style, ]}>
